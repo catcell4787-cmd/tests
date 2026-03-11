@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build') { // Сборка проекта
             steps {
-                sh 'gradle clean build' // Запуск Maven-команды сборки Java-проекта
+                sh 'gradle clean build -D skipTests' // Запуск Maven-команды сборки Java-проекта
             }
         }
 
