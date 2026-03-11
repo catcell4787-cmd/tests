@@ -18,7 +18,7 @@ pipeline {
 
         stage('Test') { // Тестирование приложения
             steps {
-                sh 'gradle cucumber' // Команда запуска тестов
+                sh 'gradle cucumber -D cucumber.filter.tags=@regress' // Команда запуска тестов
             }
         }
     }
