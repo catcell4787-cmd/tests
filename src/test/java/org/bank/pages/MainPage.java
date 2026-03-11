@@ -11,10 +11,9 @@ public class MainPage {
 
     SelenideElement clickButton = $(By.xpath("//a[@href='/click']"));
     SelenideElement badButton = $(By.xpath("//button[@id='badButton']"));
-    String hrefMainPage = "https://www.uitestingplayground.com";
 
     public void openMainPage() {
-        Selenide.open(hrefMainPage);
+        Selenide.open("/", MainPage.class);
     }
 
     public void openClickButton() {
