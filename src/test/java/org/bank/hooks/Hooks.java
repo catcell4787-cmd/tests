@@ -11,7 +11,6 @@ public class Hooks {
 
     @Before
     public void setup() {
-        Configuration.remote = "http://localhost:4443/wd/hub";
         ChromeOptions options = new ChromeOptions();
         options.setCapability("selenoid:options", new HashMap<String, Object>() {{
             put("enableVnc", true);

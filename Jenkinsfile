@@ -10,12 +10,6 @@ pipeline {
             }
         }
 
-//         stage('Build') { // Сборка проекта
-//             steps {
-//                 sh 'gradle clean build -D skipTests' // Запуск Maven-команды сборки Java-проекта
-//             }
-//         }
-
         stage('Test') { // Тестирование приложения
             steps {
                 sh 'gradle cucumber -D cucumber.filter.tags=@regress' // Команда запуска тестов
