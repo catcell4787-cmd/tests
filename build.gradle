@@ -32,7 +32,6 @@ tasks.register('cucumber') {
             if (System.getProperty("cucumber.filter.tags")) {
                 systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
             }
-            systemProperty "selenide.baseUrl", project.property("systemProp.baseUrl")
             args = [
                     '--plugin', 'pretty',
                     '--glue', 'org.bank', 'src/test/resources',
