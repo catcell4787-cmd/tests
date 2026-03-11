@@ -1,6 +1,8 @@
 pipeline {
     agent any // Выполняется на любом доступном узле
-
+    tools {
+        gradle "gradle"
+    }
     stages { // Этап разделения на шаги
         stage('Checkout') { // Клонирование репозитория
             steps {
