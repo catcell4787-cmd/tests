@@ -1,6 +1,7 @@
 package org.bank.pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -12,6 +13,11 @@ public class MainPage {
 
     SelenideElement clickButton = $(By.xpath("//a[@href='/click']"));
     SelenideElement badButton = $(By.xpath("//button[@id='badButton']"));
+    String hrefMainPage = "https://www.uitestingplayground.com";
+
+    public void openMainPage() {
+        Selenide.open(hrefMainPage);
+    }
 
     public void openClickButton() {
         clickButton.click();

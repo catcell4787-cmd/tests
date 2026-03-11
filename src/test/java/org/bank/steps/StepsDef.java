@@ -12,7 +12,7 @@ public class StepsDef {
 
     @Given("Открыта главная страница")
     public void openPage() {
-        Selenide.open("https://www.uitestingplayground.com");
+        mainPage.openMainPage();
     }
 
     @And("Открываю страницу clickButton")
