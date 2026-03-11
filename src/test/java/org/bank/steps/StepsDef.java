@@ -1,10 +1,11 @@
 package org.bank.steps;
 
-import com.codeborne.selenide.Selenide;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.bank.pages.MainPage;
+
+import static java.lang.Thread.sleep;
 
 public class StepsDef {
 
@@ -21,7 +22,8 @@ public class StepsDef {
     }
 
     @Then("Проверяю что кнопка BadButton отображается")
-    public void checkBadButtonAppears() {
+    public void checkBadButtonAppears() throws InterruptedException {
         mainPage.checkBadButtonAppears();
+        sleep(5000);
     }
 }

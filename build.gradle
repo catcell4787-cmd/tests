@@ -23,16 +23,20 @@ configurations {
     }
 }
 
-task cucumber() {
+tasks.register('cucumber') {
     dependsOn assemble, testClasses
     doLast {
         javaexec {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            if (System.getProperty("cucumber.filter.tags")) {
+                systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+            }
             args = [
                     '--plugin', 'pretty',
-                    '--plugin', 'html:target/cucumber-report.html',
-                    '--glue', 'org.bank', 'src/test/resources']
+                    '--glue', 'org.bank', 'src/test/resources',
+                    '--threads', System.getProperty("cucumber.feature") ? 1 : 5
+            ]
         }
     }
 }
