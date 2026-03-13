@@ -1,9 +1,16 @@
 package org.bank.hooks;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Screenshots;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.File;
 import java.util.HashMap;
 
 
@@ -17,7 +24,7 @@ public class Hooks {
             put("enableVnc", true);
         }});
         Configuration.browserCapabilities = options;
-
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true));
     }
 
 }

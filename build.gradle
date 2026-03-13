@@ -1,20 +1,27 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.9.6'
 }
 
-group = 'org.bank'
+group   = 'org.bank'
 version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
+def cucumberVer = "7.2.2"
+def allureVer   = "2.17.0"
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'com.codeborne:selenide:7.14.0'
-    testImplementation 'io.cucumber:cucumber-java:6.9.0'
+    testImplementation "io.cucumber:cucumber-java:$cucumberVer"
+    testImplementation "io.qameta.allure:allure-cucumber7-jvm:$allureVer"
+    testImplementation "io.qameta.allure:allure-commandline:$allureVer"
+    testImplementation "io.qameta.allure:allure-selenide:$allureVer"
 }
 
 configurations {
@@ -23,8 +30,11 @@ configurations {
     }
 }
 
-tasks.register('cucumber') {
+task cucumber {
     dependsOn assemble, testClasses
+    doFirst {
+        delete 'build/reports'
+    }
     doLast {
         javaexec {
             main = "io.cucumber.core.cli.Main"
@@ -33,13 +43,16 @@ tasks.register('cucumber') {
                 systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
             }
             systemProperty "selenide.baseUrl", "https://www.uitestingplayground.com";
+            systemProperty "allure.results.directory", "build/allure-results";
             args = [
                     '--plugin', 'pretty',
+                    '--plugin', 'io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm',
                     '--glue', 'org.bank', 'src/test/resources',
                     '--threads', System.getProperty("cucumber.feature") ? 1 : 5
             ]
         }
     }
+    cucumber.finalizedBy 'allureReport'
 }
 
 test {
