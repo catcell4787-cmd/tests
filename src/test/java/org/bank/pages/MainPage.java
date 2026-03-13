@@ -21,7 +21,10 @@ public class MainPage {
     }
 
     public void checkBadButtonAppears() {
-//        badButton.should(Condition.visible);
+        badButton.should(Condition.visible);
+    }
+
+    public void checkBadButtonNotAppears() {
         badButton.shouldNot(Condition.visible);
     }
 

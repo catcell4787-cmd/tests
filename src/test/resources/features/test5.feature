@@ -4,4 +4,4 @@ Feature: test5
   Scenario: test5
     Given Открыта главная страница
     And Открываю страницу clickButton
-    Then Проверяю что кнопка BadButton отображается
+    Then Проверяю что кнопка BadButton не отображается

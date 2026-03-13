@@ -26,4 +26,9 @@ public class StepsDef {
         mainPage.checkBadButtonAppears();
 //        sleep(5000);
     }
+
+    @Then("Проверяю что кнопка BadButton не отображается")
+    public void checkBadButtonNotAppears() {
+        mainPage.checkBadButtonNotAppears();
+    }
 }
