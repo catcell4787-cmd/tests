@@ -17,7 +17,14 @@ pipeline {
         }
     }
 
-    post { // Пост-действия после завершения пайплайна
+    post {
+        // Пост-действия после завершения пайплайна
+        always {
+        allure includeProperties:
+                             false,
+                             jdk: '',
+                             results: [[path: 'build/allure-results']]
+        }
         success {
             echo 'Сборка успешно выполнена!'
         }
