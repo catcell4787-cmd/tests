@@ -20,10 +20,11 @@ pipeline {
     post {
         // Пост-действия после завершения пайплайна
         always {
-        allure includeProperties:
+        allure ([includeProperties:
                              false,
                              jdk: '',
                              results: [[path: 'build/allure-results']]
+               ])
         }
         success {
             echo 'Сборка успешно выполнена!'
